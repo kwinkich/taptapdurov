@@ -1,0 +1,10 @@
+<main class="main">
+  <div class="main__info">
+    <p>
+      Дуров выйдет на: <br />
+      <span>{{ toCorrectTime() }}</span> <br />
+      раньше
+    </p>
+  </div>
+  <div #mainButton (click)="clickHandler($event)" class="main__btn"></div>
+</main>

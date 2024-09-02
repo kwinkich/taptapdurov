@@ -1,0 +1,37 @@
+.container {
+  position: relative;
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 90vh;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.container::before {
+  position: absolute;
+  content: "";
+  top: -15%;
+  left: -40%;
+  width: 200px;
+  height: 200px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.7;
+}
+
+.container::after {
+  position: absolute;
+  content: "";
+  bottom: -5%;
+  right: -30%;
+  width: 200px;
+  height: 200px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.7;
+}

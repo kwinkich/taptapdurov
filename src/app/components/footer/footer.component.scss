@@ -1,0 +1,17 @@
+.footer {
+  font-size: 20px;
+  color: var(--bg-color);
+  font-weight: 500;
+
+  &__link {
+    display: inline-block;
+  }
+
+  &__link img {
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__link:hover img {
+    transform: scale(1.2);
+  }
+}
