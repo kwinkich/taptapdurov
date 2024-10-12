@@ -32,7 +32,14 @@ export class MainComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
+    const ls = localStorage.getItem("totalTap");
+    console.log('ls', ls);
     this.getTime();
+    if(!ls){
+      localStorage.setItem("totalTap", "0");
+    }
+    this.tap = Number(ls);
+    this.time = Number(ls);
   }
 
   ngAfterViewInit(): void {
@@ -85,6 +92,7 @@ export class MainComponent implements OnInit, AfterViewInit {
     }
     this.time += 10;
     this.tap += 10;
+    localStorage.setItem("totalTap", this.tap.toString());
 
     if (this.timeoutRef) {
       clearTimeout(this.timeoutRef);
@@ -102,7 +110,6 @@ export class MainComponent implements OnInit, AfterViewInit {
         this.btnEl.nativeElement.classList.remove('animate');
         void this.btnEl.nativeElement.offsetWidth;
         this.btnEl.nativeElement.classList.add('animate');
-        
       }
     }
   }
