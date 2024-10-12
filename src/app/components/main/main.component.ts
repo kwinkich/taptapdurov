@@ -20,6 +20,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   @ViewChild('mainButton', { static: false })
   btnEl: ElementRef<HTMLElement> | null = null;
 
+  public isAnimation: boolean = false;
   private time: number = 0;
   private tap: number = 0;
   private timeoutRef: ReturnType<typeof setTimeout> | null = null;
@@ -52,9 +53,9 @@ export class MainComponent implements OnInit, AfterViewInit {
     const seconds = Math.floor(milliseconds / 1000);
     milliseconds %= 1000;
 
-    return `${hours > 0 ? `${hours} часов` : ''} ${
-      minutes > 0 ? `${minutes} минут` : ''
-    }  ${seconds > 0 ? `${seconds} секунд` : ''} ${milliseconds} миллисекунд`;
+    return `${hours > 0 ? `${hours} hours` : ''} ${
+      minutes > 0 ? `${minutes} minutes` : ''
+    }  ${seconds > 0 ? `${seconds} seconds` : ''} ${milliseconds} milliseconds`;
   };
 
   private renderTap = (event: MouseEvent) => {
@@ -79,6 +80,9 @@ export class MainComponent implements OnInit, AfterViewInit {
     }, 1000);
   };
   public clickHandler(event: MouseEvent) {
+    if(!this.isAnimation){
+      this.isAnimation = true;
+    }
     this.time += 10;
     this.tap += 10;
 
@@ -88,14 +92,18 @@ export class MainComponent implements OnInit, AfterViewInit {
 
     this.timeoutRef = setTimeout(() => {
       this.updateTime(this.tap);
+      this.isAnimation = false;
     }, 2000);
 
     this.renderTap(event);
 
     if (this.btnEl) {
-      this.btnEl.nativeElement.classList.remove('animate');
-      void this.btnEl.nativeElement.offsetWidth;
-      this.btnEl.nativeElement.classList.add('animate');
+      if(this.isAnimation){
+        this.btnEl.nativeElement.classList.remove('animate');
+        void this.btnEl.nativeElement.offsetWidth;
+        this.btnEl.nativeElement.classList.add('animate');
+        
+      }
     }
   }
 
